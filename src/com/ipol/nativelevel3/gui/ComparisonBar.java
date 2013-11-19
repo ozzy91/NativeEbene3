@@ -51,7 +51,7 @@ public class ComparisonBar extends View {
 	}
 
 	public void initView(Context contetx) {
-		initValue();
+		initValues();
 		initPaints();
 //		setBackgroundColor(Color.parseColor("#5500ff00"));
 	}
@@ -75,11 +75,11 @@ public class ComparisonBar extends View {
 		valuePaint.setAntiAlias(true);
 	}
 	
-	public void initValue() {
+	public void initValues() {
 		Resources res = getResources();
 		BAR_HEIGHT = (int) res.getDimension(R.dimen.comparison_bar_height);
 		BAR_MARGIN_TOP = (int) res.getDimension(R.dimen.comparison_bar_margin_top);
-		TEXT_SIZE = (int) res.getDimension(R.dimen.comparison_bar_text_size_name);
+		TEXT_SIZE = (int) res.getDimension(R.dimen.statistics_name_text_size);
 		VALUE_MARGIN_SIDE = (int) res.getDimension(R.dimen.comparison_bar_value_margin_side);
 		VALUE_MARGIN_TOP = (int) res.getDimension(R.dimen.comparison_bar_value_margin_top);
 		MIDDLE_BAR_WIDTH = (int) res.getDimension(R.dimen.comparison_bar_middle_bar_width);
@@ -91,8 +91,17 @@ public class ComparisonBar extends View {
 	protected void onDraw(Canvas canvas) {
 		if (name != null)
 			canvas.drawText(name, namePosX, TEXT_SIZE, namePaint);
-		canvas.drawRect(0, barPosY, getWidth(), barPosY + BAR_HEIGHT, darkPaint);
-		canvas.drawRect(0, barPosY, (getWidth() / 100) * relationHome, barPosY + BAR_HEIGHT, brightPaint);
+		if (relationHome > 50) {
+			canvas.drawRect(0, barPosY, (getWidth() / 100) * relationHome,
+					barPosY + BAR_HEIGHT, brightPaint);
+			canvas.drawRect((getWidth() / 100) * relationHome, barPosY, getWidth(), barPosY + BAR_HEIGHT,
+					darkPaint);
+		} else {
+			canvas.drawRect(0, barPosY, (getWidth() / 100) * relationHome,
+					barPosY + BAR_HEIGHT, darkPaint);
+			canvas.drawRect((getWidth() / 100) * relationHome, barPosY, getWidth(), barPosY + BAR_HEIGHT,
+					brightPaint);
+		}
 		canvas.drawText(valueLeft, VALUE_MARGIN_SIDE, barPosY + VALUE_MARGIN_TOP + TEXT_SIZE, valuePaint);
 		canvas.drawText(valueRight, rightValuePosX, barPosY + VALUE_MARGIN_TOP + TEXT_SIZE, valuePaint);
 		darkPaint.setColor(Color.parseColor("#29000000"));
