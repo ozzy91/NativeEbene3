@@ -2,16 +2,62 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg_portrait_2x"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="#000000"
     tools:context=".MainActivity" >
 
-	<com.ipol.nativelevel3.gui.ComparisonBar 
-	    android:id="@+id/comparison_bar"
-	    android:layout_height="wrap_content"
-	    android:layout_width="match_parent"
-	    />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <com.ipol.nativelevel3.gui.ComparisonBar
+            android:id="@+id/comparison_bar1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp" />
+
+        <com.ipol.nativelevel3.gui.ComparisonBar
+            android:id="@+id/comparison_bar2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp" />
+
+        <com.ipol.nativelevel3.gui.ComparisonBar
+            android:id="@+id/comparison_bar3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp" />
+
+        <com.ipol.nativelevel3.gui.ComparisonBar
+            android:id="@+id/comparison_bar4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp" />
+
+        <com.ipol.nativelevel3.gui.ComparisonBar
+            android:id="@+id/comparison_bar5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp" />
+        
+        <com.ipol.nativelevel3.gui.AverageBars
+            android:id="@+id/average_bars1"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/animate_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:onClick="animate"
+        android:text="Animate" />
+
 </RelativeLayout>
