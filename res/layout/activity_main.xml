@@ -37,16 +37,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp" />
-
-        <com.ipol.nativelevel3.gui.ComparisonBar
-            android:id="@+id/comparison_bar5"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp" />
         
         <com.ipol.nativelevel3.gui.AverageBars
             android:id="@+id/average_bars1"
             android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp" />
+        
+        <com.ipol.nativelevel3.gui.CircleDiagram
+            android:id="@+id/circle_diagram1"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp" />
     </LinearLayout>
