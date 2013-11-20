@@ -63,7 +63,7 @@ public class ComparisonBar extends View {
 		initView(context);
 	}
 
-	public void initView(Context contetx) {
+	public void initView(Context context) {
 		initValues();
 		initPaints();
 	}
