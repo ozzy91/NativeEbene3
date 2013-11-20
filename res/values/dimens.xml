@@ -21,4 +21,14 @@
 	<dimen name="average_bars_value_margin_top">1dp</dimen>
     <dimen name="average_bars_value_margin_side">2dp</dimen>
     
+    <!-- Circle Diagram -->
+    <dimen name="circle_diagram_name_margin_bottom">4dp</dimen>
+    <dimen name="circle_diagram_circle_width">35dp</dimen>
+    <dimen name="circle_diagram_value_circle_width">17dp</dimen>
+    <dimen name="circle_diagram_margin_between_circles">1dp</dimen>
+    <dimen name="circle_diagram_value_current_text_size">28dp</dimen>
+    <dimen name="circle_diagram_value_average_text_size">20dp</dimen>
+    <dimen name="circle_diagram_value_text_offset">6dp</dimen>
+    <dimen name="circle_diagram_percent_margin">2dp</dimen>
+    
 </resources>
