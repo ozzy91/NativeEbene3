@@ -84,6 +84,7 @@ public class ComparisonBar extends View {
 
 		disabledPaint = new Paint();
 		disabledPaint.setColor(Color.parseColor("#44aaaaaa"));
+		disabledPaint.setAntiAlias(true);
 
 		namePaint = new TextPaint();
 		namePaint.setColor(Color.WHITE);
