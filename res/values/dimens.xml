@@ -13,5 +13,12 @@
     <dimen name="comparison_bar_value_margin_side">2dp</dimen>
     <dimen name="comparison_bar_middle_bar_width">2dp</dimen>
     
-
+	<!-- Average Bars -->
+	<dimen name="average_bars_height">27dp</dimen>
+	<dimen name="average_bars_values_text_size">16dp</dimen>
+	<dimen name="average_bars_blue_bar_margin_top">4dp</dimen>
+	<dimen name="average_bars_gray_bar_margin_top">8dp</dimen>
+	<dimen name="average_bars_value_margin_top">1dp</dimen>
+    <dimen name="average_bars_value_margin_side">2dp</dimen>
+    
 </resources>
