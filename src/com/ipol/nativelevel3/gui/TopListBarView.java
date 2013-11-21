@@ -17,7 +17,7 @@ import android.view.animation.DecelerateInterpolator;
 
 import com.ipol.nativelevel3.R;
 
-public class TopListBar extends View {
+public class TopListBarView extends View {
 
 	private static int TEXT_SIZE;
 	private static int VALUES_TEXT_SIZE;
@@ -57,17 +57,17 @@ public class TopListBar extends View {
 	private boolean showBar;
 	private boolean animationStarted;
 
-	public TopListBar(Context context) {
+	public TopListBarView(Context context) {
 		super(context);
 		initView(context);
 	}
 
-	public TopListBar(Context context, AttributeSet attrs) {
+	public TopListBarView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		initView(context);
 	}
 
-	public TopListBar(Context context, AttributeSet attrs, int defStyleAttr) {
+	public TopListBarView(Context context, AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
 		initView(context);
 	}

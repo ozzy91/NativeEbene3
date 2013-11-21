@@ -18,7 +18,7 @@ import android.view.animation.DecelerateInterpolator;
 
 import com.ipol.nativelevel3.R;
 
-public class ComparisonBar extends View {
+public class ComparisonBarView extends View {
 
 	private static int BAR_HEIGHT;
 	private static int BAR_MARGIN_TOP;
@@ -48,17 +48,17 @@ public class ComparisonBar extends View {
 	private boolean showBar;
 	private boolean animationStarted;
 
-	public ComparisonBar(Context context) {
+	public ComparisonBarView(Context context) {
 		super(context);
 		initView(context);
 	}
 
-	public ComparisonBar(Context context, AttributeSet attrs) {
+	public ComparisonBarView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		initView(context);
 	}
 
-	public ComparisonBar(Context context, AttributeSet attrs, int defStyleAttr) {
+	public ComparisonBarView(Context context, AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
 		initView(context);
 	}

@@ -17,7 +17,7 @@ import android.view.animation.DecelerateInterpolator;
 
 import com.ipol.nativelevel3.R;
 
-public class CircleDiagram extends View {
+public class CircleDiagramView extends View {
 
 	private static int TEXT_SIZE;
 	private static int NAME_MARGIN_BOTTOM;
@@ -56,17 +56,17 @@ public class CircleDiagram extends View {
 	private boolean showBar;
 	private boolean animationStarted;
 
-	public CircleDiagram(Context context) {
+	public CircleDiagramView(Context context) {
 		super(context);
 		initView(context);
 	}
 
-	public CircleDiagram(Context context, AttributeSet attrs) {
+	public CircleDiagramView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		initView(context);
 	}
 
-	public CircleDiagram(Context context, AttributeSet attrs, int defStyleAttr) {
+	public CircleDiagramView(Context context, AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
 		initView(context);
 	}

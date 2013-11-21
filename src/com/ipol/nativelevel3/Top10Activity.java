@@ -5,13 +5,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.ipol.nativelevel3.gui.TopList;
-import com.ipol.nativelevel3.gui.TopListBar;
-import com.ipol.nativelevel3.gui.TopListBar.BarStyle;
+import com.ipol.nativelevel3.gui.TopListView;
+import com.ipol.nativelevel3.gui.TopListBarView;
+import com.ipol.nativelevel3.gui.TopListBarView.BarStyle;
 
 public class Top10Activity extends Activity {
 	
-	private TopList topList;
+	private TopListView topList;
 	
 //	private TopListBar topListBar1;
 //	private TopListBar topListBar2;
@@ -34,14 +34,14 @@ public class Top10Activity extends Activity {
 		styleButton = (Button) findViewById(R.id.style_button);
 		valuesButton = (Button) findViewById(R.id.values_button);
 		
-		topList = (TopList) findViewById(R.id.top_list);
+		topList = (TopListView) findViewById(R.id.top_list);
 //		topListBar1 = (TopListBar) findViewById(R.id.top_list_bar1);
 //		topListBar2 = (TopListBar) findViewById(R.id.top_list_bar2);
 //		topListBar3 = (TopListBar) findViewById(R.id.top_list_bar3);
 //		topListBar4 = (TopListBar) findViewById(R.id.top_list_bar4);
 //		topListBar5 = (TopListBar) findViewById(R.id.top_list_bar5);
 		
-		topList.setStyle(TopListBar.BarStyle.FULL_WIDTH);
+		topList.setStyle(TopListBarView.BarStyle.FULL_WIDTH);
 		topList.addEntry("Diego", "1.", "Wolfsburg", "42", 100, null);
 		topList.addEntry("Mirko Boland", "2.", "B'schweig", "34", 80.95f, null);
 		topList.addEntry("Stefan Kie§ling", "3.", "Leverkusen", "32", 76.19f, null);

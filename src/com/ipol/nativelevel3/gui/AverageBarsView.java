@@ -18,7 +18,7 @@ import android.view.animation.DecelerateInterpolator;
 
 import com.ipol.nativelevel3.R;
 
-public class AverageBars extends View {
+public class AverageBarsView extends View {
 
 	private static int TEXT_SIZE;
 	private static int VALUES_TEXT_SIZE;
@@ -50,17 +50,17 @@ public class AverageBars extends View {
 	private boolean showBar;
 	private boolean animationStarted;
 
-	public AverageBars(Context context) {
+	public AverageBarsView(Context context) {
 		super(context);
 		initView(context);
 	}
 
-	public AverageBars(Context context, AttributeSet attrs) {
+	public AverageBarsView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		initView(context);
 	}
 
-	public AverageBars(Context context, AttributeSet attrs, int defStyleAttr) {
+	public AverageBarsView(Context context, AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
 		initView(context);
 	}

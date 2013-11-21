@@ -10,29 +10,29 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.ipol.nativelevel3.R;
-import com.ipol.nativelevel3.gui.TopListBar.BarStyle;
+import com.ipol.nativelevel3.gui.TopListBarView.BarStyle;
 
-public class TopList extends LinearLayout {
+public class TopListView extends LinearLayout {
 
 	private static final int TIME_BETWEEN_ANIMATION = 150;
 
 	private Context context;
 
-	private ArrayList<TopListBar> entries;
-	private TopListBar.BarStyle style = TopListBar.BarStyle.FULL_WIDTH;
+	private ArrayList<TopListBarView> entries;
+	private TopListBarView.BarStyle style = TopListBarView.BarStyle.FULL_WIDTH;
 	private boolean even;
 
-	public TopList(Context context) {
+	public TopListView(Context context) {
 		super(context);
 		initView(context);
 	}
 
-	public TopList(Context context, AttributeSet attrs) {
+	public TopListView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		initView(context);
 	}
 
-	public TopList(Context context, AttributeSet attrs, int defStyleAttr) {
+	public TopListView(Context context, AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
 		initView(context);
 	}
@@ -40,7 +40,7 @@ public class TopList extends LinearLayout {
 	public void initView(Context context) {
 		this.context = context;
 		setOrientation(LinearLayout.VERTICAL);
-		entries = new ArrayList<TopListBar>();
+		entries = new ArrayList<TopListBarView>();
 
 		TextView source = new TextView(context);
 		source.setLayoutParams(getDefaultParams());
@@ -52,7 +52,7 @@ public class TopList extends LinearLayout {
 
 	public void addEntry(String name, String position, String teamname,
 			String value, float relation, String total) {
-		TopListBar bar = new TopListBar(context);
+		TopListBarView bar = new TopListBarView(context);
 		bar.setData(name, position, teamname, value, relation, total);
 		bar.setLayoutParams(getDefaultParams());
 		bar.setEven(even);
@@ -66,7 +66,7 @@ public class TopList extends LinearLayout {
 			String firstValue, float firstRelation, String secondValue,
 			float secondRelation, String total) {
 		setStyle(BarStyle.TWO_VALUES);
-		TopListBar bar = new TopListBar(context);
+		TopListBarView bar = new TopListBarView(context);
 		bar.setData(name, position, teamname, firstValue, firstRelation,
 				secondValue, secondRelation, total);
 		bar.setLayoutParams(getDefaultParams());
@@ -80,7 +80,7 @@ public class TopList extends LinearLayout {
 	public void setStyle(BarStyle style) {
 		if (style != null) {
 			this.style = style;
-			for (TopListBar bar : entries)
+			for (TopListBarView bar : entries)
 				bar.setStyle(style);
 		}
 	}
@@ -89,7 +89,7 @@ public class TopList extends LinearLayout {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
-				for (final TopListBar bar : entries) {
+				for (final TopListBarView bar : entries) {
 					try {
 						Thread.sleep(TIME_BETWEEN_ANIMATION);
 					} catch (InterruptedException e) {
@@ -107,7 +107,7 @@ public class TopList extends LinearLayout {
 	}
 
 	public void hideBars() {
-		for (TopListBar bar : entries)
+		for (TopListBarView bar : entries)
 			bar.hideBar();
 	}
 

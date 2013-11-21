@@ -8,19 +8,19 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-import com.ipol.nativelevel3.gui.AverageBars;
-import com.ipol.nativelevel3.gui.CircleDiagram;
-import com.ipol.nativelevel3.gui.ComparisonBar;
+import com.ipol.nativelevel3.gui.AverageBarsView;
+import com.ipol.nativelevel3.gui.CircleDiagramView;
+import com.ipol.nativelevel3.gui.ComparisonBarView;
 
 public class MainActivity extends Activity {
 	
-	private ComparisonBar comparisonBar1;
-	private ComparisonBar comparisonBar2;
-	private ComparisonBar comparisonBar3;
-	private ComparisonBar comparisonBar4;
+	private ComparisonBarView comparisonBar1;
+	private ComparisonBarView comparisonBar2;
+	private ComparisonBarView comparisonBar3;
+	private ComparisonBarView comparisonBar4;
 	
-	private AverageBars averageBar1;
-	private CircleDiagram circleDiagram1;
+	private AverageBarsView averageBar1;
+	private CircleDiagramView circleDiagram1;
 
 	private Button animateButton;
 	private boolean animated;
@@ -31,12 +31,12 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 		
 		animateButton = (Button) findViewById(R.id.animate_button);
-		comparisonBar1 = (ComparisonBar) findViewById(R.id.comparison_bar1);
-		comparisonBar2 = (ComparisonBar) findViewById(R.id.comparison_bar2);
-		comparisonBar3 = (ComparisonBar) findViewById(R.id.comparison_bar3);
-		comparisonBar4 = (ComparisonBar) findViewById(R.id.comparison_bar4);
-		averageBar1 = (AverageBars) findViewById(R.id.average_bars1);
-		circleDiagram1 = (CircleDiagram) findViewById(R.id.circle_diagram1);
+		comparisonBar1 = (ComparisonBarView) findViewById(R.id.comparison_bar1);
+		comparisonBar2 = (ComparisonBarView) findViewById(R.id.comparison_bar2);
+		comparisonBar3 = (ComparisonBarView) findViewById(R.id.comparison_bar3);
+		comparisonBar4 = (ComparisonBarView) findViewById(R.id.comparison_bar4);
+		averageBar1 = (AverageBarsView) findViewById(R.id.average_bars1);
+		circleDiagram1 = (CircleDiagramView) findViewById(R.id.circle_diagram1);
 		
 		comparisonBar1.setData("Ballkontakte", "915", "466", 66.26f);
 		comparisonBar2.setData("Ballbesitz in %", "72", "28", 72.3f);
