@@ -1,24 +1,21 @@
 package com.ipol.nativelevel3.gui;
 
-import com.ipol.nativelevel3.R;
-
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
 import android.graphics.Typeface;
 import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
-import android.view.View.MeasureSpec;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.view.animation.DecelerateInterpolator;
+
+import com.ipol.nativelevel3.R;
 
 public class CircleDiagram extends View {
 
@@ -53,7 +50,6 @@ public class CircleDiagram extends View {
 	private Paint disabledPaint;
 	private Paint bluePaint;
 	private Paint grayPaint;
-	private Paint clearPaint;
 	private TextPaint namePaint;
 	private TextPaint valuePaint;
 

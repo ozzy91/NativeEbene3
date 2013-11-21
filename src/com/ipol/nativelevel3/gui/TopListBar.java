@@ -13,7 +13,6 @@ import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
-import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.view.animation.DecelerateInterpolator;
 
 import com.ipol.nativelevel3.R;
@@ -34,13 +33,23 @@ public class TopListBar extends View {
 	private String name;
 	private String teamname;
 	private String position;
-	private String value;
-	private float relation;
-	private float animationRelation;
+	private String firstValue;
+	private float firstRelation;
+	private String secondValue;
+	private float secondRelation;
+	private String total;
+	private float animationFirstRelation;
+	private float animationSecondRelation;
+	private boolean even;
+	private BarStyle style = BarStyle.FULL_WIDTH;
 
-	private float valueWidth;
+	private float firstValueWidth;
+	private float secondValueWidth;
+	private float totalWidth;
+	private float barLeft;
 
-	private Paint bluePaint;
+	private Paint evenBluePaint;
+	private Paint oddBluePaint;
 	private Paint labelPaint;
 	private TextPaint namePaint;
 	private TextPaint valuePaint;
@@ -90,13 +99,18 @@ public class TopListBar extends View {
 	}
 
 	public void initPaints() {
-		bluePaint = new Paint();
-		bluePaint.setShader(new LinearGradient(0, 0, 0, BAR_HEIGHT, Color
-				.parseColor("#4f6d89"), Color.parseColor("#7baae2"),
+		evenBluePaint = new Paint();
+		evenBluePaint.setShader(new LinearGradient(0, 0, 0, BAR_HEIGHT, Color
+				.parseColor("#5576a1"), Color.parseColor("#374a62"),
+				Shader.TileMode.MIRROR));
+
+		oddBluePaint = new Paint();
+		oddBluePaint.setShader(new LinearGradient(0, 0, 0, BAR_HEIGHT, Color
+				.parseColor("#7baae2"), Color.parseColor("#4f6d89"),
 				Shader.TileMode.MIRROR));
 
 		labelPaint = new Paint();
-		labelPaint.setColor(Color.parseColor("#88000000"));
+		labelPaint.setColor(Color.parseColor("#A61E1E1E"));
 
 		namePaint = new TextPaint();
 		namePaint.setColor(Color.WHITE);
@@ -116,32 +130,88 @@ public class TopListBar extends View {
 		if (showBar) {
 			if (!animationStarted) {
 				ObjectAnimator barAnimator = ObjectAnimator.ofFloat(this,
-						"animationRelation", relation);
-				barAnimator.setDuration(800);
+						"firstAnimationRelation", firstRelation);
+				barAnimator.setDuration(700);
 				barAnimator.setInterpolator(new DecelerateInterpolator());
 				barAnimator.start();
+				if (style == BarStyle.TWO_VALUES) {
+					ObjectAnimator secondBarAnimator = ObjectAnimator.ofFloat(
+							this, "secondAnimationRelation", secondRelation);
+					secondBarAnimator.setDuration(700);
+					secondBarAnimator
+							.setInterpolator(new DecelerateInterpolator());
+					secondBarAnimator.start();
+				}
 				animationStarted = true;
 			}
-			canvas.drawRect(0, 0, (getWidth() / 100) * animationRelation,
-					BAR_HEIGHT, bluePaint);
+			if (style == BarStyle.TWO_VALUES) {
+				canvas.drawRect(barLeft, 0, barLeft
+						+ ((getWidth() - barLeft) / 100)
+						* animationSecondRelation, BAR_HEIGHT, oddBluePaint);
+				canvas.drawRect(barLeft, 0, barLeft
+						+ ((getWidth() - barLeft) / 100)
+						* animationFirstRelation, BAR_HEIGHT, evenBluePaint);
 
-			if (value != null)
-				canvas.drawText(value, (getWidth() / 100) * animationRelation
-						- valueWidth - VALUE_MARGIN_SIDE, VALUE_MARGIN_TOP
-						+ VALUES_TEXT_SIZE, valuePaint);
+				if (secondValue != null) {
+					float valueLeft = barLeft + ((getWidth() - barLeft) / 100)
+							* animationSecondRelation - secondValueWidth
+							- VALUE_MARGIN_SIDE;
+					if (valueLeft > barLeft)
+						canvas.drawText(secondValue, valueLeft,
+								VALUE_MARGIN_TOP + VALUES_TEXT_SIZE, valuePaint);
+				}
+			} else {
+				if (even)
+					canvas.drawRect(barLeft, 0, barLeft
+							+ ((getWidth() - barLeft) / 100)
+							* animationFirstRelation, BAR_HEIGHT, evenBluePaint);
+				else
+					canvas.drawRect(barLeft, 0, barLeft
+							+ ((getWidth() - barLeft) / 100)
+							* animationFirstRelation, BAR_HEIGHT, oddBluePaint);
+			}
 
-			if (animationRelation == relation) {
+			if (firstValue != null) {
+				float valueLeft = barLeft + ((getWidth() - barLeft) / 100)
+						* animationFirstRelation - firstValueWidth
+						- VALUE_MARGIN_SIDE;
+				if (valueLeft > barLeft)
+					canvas.drawText(firstValue, valueLeft, VALUE_MARGIN_TOP
+							+ VALUES_TEXT_SIZE, valuePaint);
+			}
+
+			if (style != BarStyle.FULL_WIDTH
+					|| animationFirstRelation == firstRelation) {
 				canvas.drawRect(LABEL_MARGIN_LEFT, 0, LABEL_MARGIN_LEFT
 						+ LABEL_WIDTH, BAR_HEIGHT, labelPaint);
 
-				namePaint.setColor(Color.WHITE);
 				if (position != null)
-					canvas.drawText(position, POSITION_MARGIN_LEFT, TEXT_SIZE, namePaint);
+					canvas.drawText(position, POSITION_MARGIN_LEFT, TEXT_SIZE,
+							namePaint);
 				if (name != null)
-					canvas.drawText(name, NAME_MARGIN_LEFT, TEXT_SIZE, namePaint);
-				namePaint.setColor(Color.parseColor("#aaaaaa"));
-				if (teamname != null)
-					canvas.drawText(teamname, NAME_MARGIN_LEFT, TEAMNAME_MARGIN_TOP + 2 * TEXT_SIZE, namePaint);
+					canvas.drawText(name, NAME_MARGIN_LEFT, TEXT_SIZE,
+							namePaint);
+				if (teamname != null) {
+					namePaint.setColor(Color.parseColor("#999999"));
+					canvas.drawText(teamname, NAME_MARGIN_LEFT,
+							TEAMNAME_MARGIN_TOP + 2 * TEXT_SIZE, namePaint);
+					namePaint.setColor(Color.WHITE);
+				}
+				if (total != null) {
+					if (style == BarStyle.TWO_VALUES) {
+						valuePaint.setColor(Color.parseColor("#57779b"));
+						canvas.drawText(total, LABEL_MARGIN_LEFT + LABEL_WIDTH
+								- VALUE_MARGIN_SIDE - totalWidth,
+								VALUE_MARGIN_TOP + VALUES_TEXT_SIZE, valuePaint);
+						valuePaint.setColor(Color.WHITE);
+					} else {
+						namePaint.setTextSize(VALUES_TEXT_SIZE);
+						canvas.drawText(total, LABEL_MARGIN_LEFT + LABEL_WIDTH
+								- VALUE_MARGIN_SIDE - totalWidth,
+								VALUE_MARGIN_TOP + VALUES_TEXT_SIZE, namePaint);
+						namePaint.setTextSize(TEXT_SIZE);
+					}
+				}
 			}
 		}
 	}
@@ -181,28 +251,105 @@ public class TopListBar extends View {
 
 	public void hideBar() {
 		showBar = false;
-		animationRelation = 0f;
+		animationFirstRelation = 0f;
+		animationSecondRelation = 0f;
 		animationStarted = false;
 		invalidate();
 	}
 
-	public void setData(final String name, String position, String teamname, String value,
-			float relation) {
+	public void setData(final String name, String position, String teamname,
+			String value, float relation, String total) {
 		this.name = name;
 		this.position = position;
 		this.teamname = teamname;
-		this.value = value;
-		this.relation = relation;
+		this.firstValue = value;
+		this.firstRelation = relation;
+		this.total = total;
 
-		valueWidth = valuePaint.measureText(value);
+		firstValueWidth = valuePaint.measureText(value);
+		if (total != null) {
+			namePaint.setTextSize(VALUES_TEXT_SIZE);
+			totalWidth = namePaint.measureText(total);
+			namePaint.setTextSize(TEXT_SIZE);
+		}
 	}
 
-	public float getAnimationRelation() {
-		return animationRelation;
+	public void setData(final String name, String position, String teamname,
+			String firstValue, float firstRelation, String secondValue,
+			float secondRelation, String total) {
+		setStyle(BarStyle.TWO_VALUES);
+		this.name = name;
+		this.position = position;
+		this.teamname = teamname;
+		this.firstValue = firstValue;
+		this.firstRelation = firstRelation;
+		this.secondValue = secondValue;
+		this.secondRelation = secondRelation;
+		this.total = total;
+
+		firstValueWidth = valuePaint.measureText(firstValue);
+		secondValueWidth = valuePaint.measureText(secondValue);
+		totalWidth = valuePaint.measureText(total);
 	}
 
-	public void setAnimationRelation(float animationRelation) {
-		this.animationRelation = animationRelation;
+	public void setEven(boolean even) {
+		this.even = even;
+		if (even) {
+			if (style == BarStyle.FULL_WIDTH)
+				labelPaint.setColor(Color.parseColor("#CC1E1E1E"));
+			else
+				labelPaint.setShader(new LinearGradient(0, 0, 0, BAR_HEIGHT,
+						Color.parseColor("#0fffffff"), Color
+								.parseColor("#05ffffff"),
+						Shader.TileMode.MIRROR));
+		}
+	}
+
+	public void setStyle(BarStyle style) {
+		this.style = style;
+		if (style == BarStyle.FULL_WIDTH) {
+			barLeft = 0;
+			labelPaint.setShader(null);
+			if (even)
+				labelPaint.setColor(Color.parseColor("#CC1E1E1E"));
+			else
+				labelPaint.setColor(Color.parseColor("#A61E1E1E"));
+		} else {
+			barLeft = LABEL_WIDTH + 2 * LABEL_MARGIN_LEFT;
+			labelPaint.setColor(Color.parseColor("#000000"));
+			if (even)
+				labelPaint.setShader(new LinearGradient(0, 0, 0, BAR_HEIGHT,
+						Color.parseColor("#0fffffff"), Color
+								.parseColor("#05ffffff"),
+						Shader.TileMode.MIRROR));
+			else
+				labelPaint.setShader(new LinearGradient(0, 0, 0, BAR_HEIGHT,
+						Color.parseColor("#24ffffff"), Color
+								.parseColor("#14ffffff"),
+						Shader.TileMode.MIRROR));
+		}
 		invalidate();
+	}
+
+	public float getFirstAnimationRelation() {
+		return animationFirstRelation;
+	}
+
+	public void setFirstAnimationRelation(float animationRelation) {
+		this.animationFirstRelation = animationRelation;
+		invalidate();
+	}
+
+	public float getSecondAnimationRelation() {
+		return animationSecondRelation;
+	}
+
+	public void setSecondAnimationRelation(float animationRelation) {
+		this.animationSecondRelation = animationRelation;
+		invalidate();
+	}
+
+	public enum BarStyle {
+		FULL_WIDTH, HALF_WIDTH, TWO_VALUES
 	}
 }

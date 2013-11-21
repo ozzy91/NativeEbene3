@@ -49,7 +49,6 @@ public class MainActivity extends Activity {
 	
 	public void animate(View view) {
 		if (animated) {
-			System.out.println("reset");
 			animated = false;
 			animateButton.setText("Animate");
 			
@@ -61,7 +60,6 @@ public class MainActivity extends Activity {
 			averageBar1.hideBar();
 			circleDiagram1.hideBar();
 		} else {
-			System.out.println("animate");
 			animated = true;
 			animateButton.setText("Reset");
 			
