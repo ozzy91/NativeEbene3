@@ -36,14 +36,16 @@ public class MainActivity extends Activity {
 		comparisonBar3 = (ComparisonBarView) findViewById(R.id.comparison_bar3);
 		comparisonBar4 = (ComparisonBarView) findViewById(R.id.comparison_bar4);
 		averageBar1 = (AverageBarsView) findViewById(R.id.average_bars1);
+//		averageBar2 = (AverageBarsView) findViewById(R.id.average_bars2);
 		circleDiagram1 = (CircleDiagramView) findViewById(R.id.circle_diagram1);
 		
-		comparisonBar1.setData("Ballkontakte", "915", "466", 66.26f);
-		comparisonBar2.setData("Ballbesitz in %", "72", "28", 72.3f);
-		comparisonBar3.setData("Passquote in %", "91", "78", 53.97f);
-		comparisonBar4.setData("Erfolgreiche PŠsse", "657", "193", 77.29f);
+		comparisonBar1.setData("915", "466", 66.26f);
+		comparisonBar2.setData("72", "28", 72.3f);
+		comparisonBar3.setData("91", "78", 53.97f);
+		comparisonBar4.setData("657", "193", 77.29f);
 		
 		averageBar1.setData("Ballkontakte", "863", "623", 100f, 72.2f);
+//		averageBar2.setData("Ballkontakte", "863", "623", 100f, 72.2f);
 		circleDiagram1.setData("Ballbesitz", 71.01f, 50f);
 	}
 	
@@ -58,6 +60,7 @@ public class MainActivity extends Activity {
 			comparisonBar4.hideBar();
 			
 			averageBar1.hideBar();
+//			averageBar2.hideBar();
 			circleDiagram1.hideBar();
 		} else {
 			animated = true;
@@ -69,6 +72,7 @@ public class MainActivity extends Activity {
 			comparisonBar4.showBar();
 			
 			averageBar1.showBar();
+//			averageBar2.showBar();
 			circleDiagram1.showBar();
 		}
 	}
@@ -81,8 +85,12 @@ public class MainActivity extends Activity {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		if (item.getItemId() == R.id.action_settings) {
+		if (item.getItemId() == R.id.action_top10) {
 			Intent intent = new Intent(this, Top10Activity.class);
+			startActivity(intent);
+		}
+		if (item.getItemId() == R.id.action_lineup) {
+			Intent intent = new Intent(this, LineupActivity.class);
 			startActivity(intent);
 		}
 		return super.onOptionsItemSelected(item);

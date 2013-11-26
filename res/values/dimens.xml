@@ -44,5 +44,23 @@
     <dimen name="top_list_bar_position_margin_left">10dp</dimen>
     <dimen name="top_list_bar_name_margin_left">28dp</dimen>
     <dimen name="top_list_bar_teamname_margin_top">2.5dp</dimen>
+    
+    <!-- Lineup Statistics -->
+    <dimen name="lineup_statistics_margin_middle">4dp</dimen>
+    <dimen name="lineup_statistics_normal_view_height">34dp</dimen>
+    <dimen name="lineup_statistics_white_text_size">13dp</dimen>
+    <dimen name="lineup_statistics_position_text_size">15dp</dimen>
+    <dimen name="lineup_statistics_position_text_margin_side">4dp</dimen>
+    <dimen name="lineup_statistics_player_text_margin_bottom">12dp</dimen>
+    <dimen name="lineup_statistics_number_text_margin">6dp</dimen>
+    <dimen name="lineup_statistics_name_text_margin">25dp</dimen>
+    <dimen name="lineup_statistics_underline_height">1dp</dimen>
+    <dimen name="lineup_statistics_underline_margin_inside">6dp</dimen>
+    <dimen name="lineup_statistics_underline_margin_outside">8dp</dimen>
+    <dimen name="lineup_statistics_gradient_height">34dp</dimen>
+    <dimen name="lineup_statistics_arrow_margin_side">4dp</dimen>
+    <dimen name="lineup_statistics_minute_margin_side">6dp</dimen>
+    <dimen name="lineup_statistics_substitution_width">7.5dp</dimen>
+    <dimen name="lineup_statistics_substitution_height">10dp</dimen>
 
 </resources>

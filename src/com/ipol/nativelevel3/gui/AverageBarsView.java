@@ -13,7 +13,6 @@ import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
-import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.view.animation.DecelerateInterpolator;
 
 import com.ipol.nativelevel3.R;
@@ -177,6 +176,9 @@ public class AverageBarsView extends View {
 			width = desiredWidth;
 		}
 
+		int parentWidth = MeasureSpec.getSize(widthMeasureSpec);
+		System.out.println(parentWidth);
+		
 		// MUST CALL THIS
 		setMeasuredDimension(width, height);
 	}
@@ -205,15 +207,6 @@ public class AverageBarsView extends View {
 
 		currentValueWidth = valuePaint.measureText(valueCurrent);
 		averageValueWidth = valuePaint.measureText(valueAverage);
-
-		getViewTreeObserver().addOnGlobalLayoutListener(
-				new OnGlobalLayoutListener() {
-					@Override
-					public void onGlobalLayout() {
-						getViewTreeObserver()
-								.removeGlobalOnLayoutListener(this);
-					}
-				});
 	}
 
 	public float getAnimationRelationCurrent() {

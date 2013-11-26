@@ -3,6 +3,7 @@ package com.ipol.nativelevel3.gui;
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.res.Resources;
+import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.LinearGradient;
@@ -56,9 +57,13 @@ public class ComparisonBarView extends View {
 	public ComparisonBarView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		initView(context);
+		TypedArray a = context.getTheme().obtainStyledAttributes(attrs,
+				R.styleable.ComparisonBarView, 0, 0);
+		this.name = a.getString(R.styleable.ComparisonBarView_name);
 	}
 
-	public ComparisonBarView(Context context, AttributeSet attrs, int defStyleAttr) {
+	public ComparisonBarView(Context context, AttributeSet attrs,
+			int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
 		initView(context);
 	}
@@ -200,9 +205,8 @@ public class ComparisonBarView extends View {
 		invalidate();
 	}
 
-	public void setData(final String name, final String valueLeft,
-			final String valueRight, float relationHome) {
-		this.name = name;
+	public void setData(final String valueLeft, final String valueRight,
+			float relationHome) {
 		this.valueLeft = valueLeft;
 		this.valueRight = valueRight;
 		this.relationHome = relationHome;
@@ -218,10 +222,13 @@ public class ComparisonBarView extends View {
 					public void onGlobalLayout() {
 						getViewTreeObserver()
 								.removeGlobalOnLayoutListener(this);
-						namePosX = (int) (getWidth() / 2 - namePaint
-								.measureText(name) / 2);
-						rightValuePosX = (int) (getWidth() - VALUE_MARGIN_SIDE - valuePaint
-								.measureText(valueRight));
+						if (name != null)
+							namePosX = (int) (getWidth() / 2 - namePaint
+									.measureText(name) / 2);
+						if (valueRight != null)
+							rightValuePosX = (int) (getWidth()
+									- VALUE_MARGIN_SIDE - valuePaint
+									.measureText(valueRight));
 					}
 				});
 	}

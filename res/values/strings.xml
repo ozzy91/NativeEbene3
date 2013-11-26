@@ -3,6 +3,9 @@
 
     <string name="app_name">Native Ebene 3</string>
     <string name="action_top10">Top 10</string>
+    <string name="action_lineup">Startaufstellung</string>
     <string name="hello_world">Hello world!</string>
+    <string name="title_activity_lineup">LineupActivity</string>
+    <string name="action_settings">Settings</string>
 
 </resources>

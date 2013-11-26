@@ -1,4 +1,5 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res/com.ipol.nativelevel3"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -16,34 +17,38 @@
 
         <com.ipol.nativelevel3.gui.ComparisonBarView
             android:id="@+id/comparison_bar1"
+            custom:name="Ballkontakte"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp" />
 
         <com.ipol.nativelevel3.gui.ComparisonBarView
             android:id="@+id/comparison_bar2"
+            custom:name="Ballbesitz in %"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp" />
 
         <com.ipol.nativelevel3.gui.ComparisonBarView
             android:id="@+id/comparison_bar3"
+            custom:name="Passquote in %"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp" />
 
         <com.ipol.nativelevel3.gui.ComparisonBarView
             android:id="@+id/comparison_bar4"
+            custom:name="Erfolgreiche Pässe"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp" />
-        
+
         <com.ipol.nativelevel3.gui.AverageBarsView
             android:id="@+id/average_bars1"
-            android:layout_width="150dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp" />
-        
+
         <com.ipol.nativelevel3.gui.CircleDiagramView
             android:id="@+id/circle_diagram1"
             android:layout_width="wrap_content"
