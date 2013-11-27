@@ -43,11 +43,31 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp" />
 
-        <com.ipol.nativelevel3.gui.AverageBarsView
-            android:id="@+id/average_bars1"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp" />
+            android:layout_marginBottom="12dp" >
+
+            <View
+                android:id="@+id/middle"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_centerHorizontal="true" />
+
+            <com.ipol.nativelevel3.gui.AverageBarsView
+                android:id="@+id/average_bars1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignRight="@id/middle" />
+
+            <com.ipol.nativelevel3.gui.AverageBarsView
+                android:id="@+id/average_bars2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/middle"
+                android:layout_alignParentRight="true" />
+        </RelativeLayout>
 
         <com.ipol.nativelevel3.gui.CircleDiagramView
             android:id="@+id/circle_diagram1"

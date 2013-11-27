@@ -131,20 +131,20 @@ public class AverageBarsView extends View {
 				averageAnimator.start();
 				animationStarted = true;
 			}
-			canvas.drawRect(0, blueBarPosY, (getWidth() / 100)
+			canvas.drawRect(0, blueBarPosY, ((float) getWidth() / 100)
 					* animationRelationCurrent, blueBarPosY + BAR_HEIGHT,
 					bluePaint);
-			canvas.drawRect(0, grayBarPosY, (getWidth() / 100)
+			canvas.drawRect(0, grayBarPosY, ((float) getWidth() / 100)
 					* animationRelationAverage, grayBarPosY + BAR_HEIGHT,
 					grayPaint);
 
 			if (valueCurrent != null)
-				canvas.drawText(valueCurrent, (getWidth() / 100)
+				canvas.drawText(valueCurrent, ((float) getWidth() / 100)
 						* animationRelationCurrent - currentValueWidth
 						- VALUE_MARGIN_SIDE, blueBarPosY + VALUE_MARGIN_TOP
 						+ VALUES_TEXT_SIZE, valuePaint);
 			if (valueAverage != null)
-				canvas.drawText(valueAverage, (getWidth() / 100)
+				canvas.drawText(valueAverage, ((float) getWidth() / 100)
 						* animationRelationAverage - averageValueWidth
 						- VALUE_MARGIN_SIDE, grayBarPosY + VALUE_MARGIN_TOP
 						+ VALUES_TEXT_SIZE, valuePaint);
@@ -176,9 +176,6 @@ public class AverageBarsView extends View {
 			width = desiredWidth;
 		}
 
-		int parentWidth = MeasureSpec.getSize(widthMeasureSpec);
-		System.out.println(parentWidth);
-		
 		// MUST CALL THIS
 		setMeasuredDimension(width, height);
 	}
